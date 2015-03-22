@@ -45,6 +45,8 @@ class ProjectFinderView extends SelectListView
     projects = []
     rootPath = atom.config.get('project-finder.rootPath')
     targetDirs = atom.config.get('project-finder.targetDirs')
+    return fn([]) unless fs.existsSync rootPath
+
     finder = findit(rootPath)
 
     finder.on 'directory', (dir, stat, stop) =>
